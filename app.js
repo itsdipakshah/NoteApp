@@ -1,0 +1,28 @@
+import express from "express";
+import { configDotenv } from "dotenv";
+import cors from "cors";
+
+import noteRouter from "./router/noteRouter.js";
+import dbConnect from "./database/dbConnect.js";
+
+
+
+const app = express();
+configDotenv();
+
+app.use(cors({
+    origin:["FRONTEND_URI"],
+    methods:["POST","GET","DELETE","PUT"],
+    credentials:true,
+    })
+);
+
+app.use("/api/v1/notes", noteRouter);
+
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+
+
+dbConnect();
+export default app;
