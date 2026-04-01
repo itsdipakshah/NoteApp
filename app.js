@@ -16,11 +16,11 @@ app.use(cors({
     credentials:true,
     })
 );
-
-app.use("/api/v1/notes", noteRouter);
-
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+
+app.use("/api/v1/notes", noteRouter);
 
 
 
