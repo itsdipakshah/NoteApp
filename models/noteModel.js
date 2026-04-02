@@ -11,8 +11,9 @@ const noteSchema = new mongoose.Schema({
         type:String,
         required:[true,"description is required"],
     },
-    createdAt:Date,
-    
-});
+
+},
+{timestamps:true}
+);
 
 export const Note = mongoose.model("Note", noteSchema);

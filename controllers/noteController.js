@@ -48,32 +48,6 @@ export const getAllNotes =(async(req,res)=>{
 
 });
 
-
-export const getNoteById =(async(req,res)=>{
-try {
-   const {id}=req.params;
-   const notes = await Note.findById(id);
-   if(!notes){
-      return res.status(400).json({
-         success:false,
-         message:"notes are not found!"
-      });
-   }
-
-   return res.status(200).json({
-      success:true,
-      notes,
-    }); 
-} catch (error) {
-   return res.status(500).json({
-      success:true,
-      message:"Fetching Notes by ID is error",
-      error:error.message,
-   });
-}
-
-});
-
 export const updateNote = async (req, res) => {
   try {
    const {title ,description}=req.body;
