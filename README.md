@@ -61,3 +61,10 @@ Open your terminal in the project folder and run these commands:
 3. `git push origin main`
 
 ```
+
+**If you want to keep your git history linear and avoid "Merge branch..." commits:**
+```text
+Bash
+git pull --rebase origin main
+git push origin main
+```
