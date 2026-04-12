@@ -11,14 +11,15 @@ const app = express();
 configDotenv();
 
 app.use(cors({
-    origin:["FRONTEND_URI"],
+    origin:[process.env.FRONTEND_URI],
     methods:["POST","GET","DELETE","PUT"],
-    credentials:true,
+    credentials:true
+
     })
 );
-app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(cors());
+app.use(express.json());
+
 
 
 app.use("/api/v1/notes", noteRouter);

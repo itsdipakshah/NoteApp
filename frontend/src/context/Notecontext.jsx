@@ -1,4 +1,4 @@
-import { children, createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import BACKEND_URL from "../api/url.js";
 
 
@@ -35,12 +35,22 @@ const getNotes = async () =>{
 
 //create a function to add a note to the database
 const addNote = async (noteData) => {
+    setloading(true);
     try {
         const res = await BACKEND_URL.post("/add", noteData);
         const data = res.data.note || res.data.data || res.data;
-        setnotes((prev) => [...prev, data]);
+        
+        console.log("New note from server:", data); 
+        
+        setnotes((prev) => {
+            const updated = [...prev, data];
+            console.log("Updated state in Context:", updated);
+            return updated;
+        });
     } catch (error) {
         console.error(error);
+    } finally {
+        setloading(false);
     }
 };
 
